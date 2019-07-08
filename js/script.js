@@ -29,7 +29,7 @@ $('#title').on('change', function(){
  // is hiding the color after the design is selected.
  $('#colors-js-puns').hide();
 
- // Change function to display associated T-Shirt colors per designs
+ //  function to display associated T-Shirt colors per designs
 
  // we are using the return method in a true or false Return: true/false for form validation
  var shirtSelect = false;
@@ -57,7 +57,8 @@ $('#title').on('change', function(){
 /////////////////// Activities Section //////////////////
 ///////////////////            ////////////////////
 
-// Section is a bit longer that I would like. Would be great to refactor, by assigning each activity to an object literal that has key:value pairs for cost and time of day. This way we can use a jQuery .each() function to loop over the activities and add/remove classes & append/remove the unavailable methods as well as update the total cost.
+// some events are at the same day and time if one of those events are pick the other can not be selected.
+// the rest of the activities can be selected and add to the total cost, they do not repeat.
 
     // Set global variables for different section activities.
     var Frameworks = $("input[name='js-frameworks'");
@@ -69,7 +70,7 @@ $('#title').on('change', function(){
     var totalCost = 0;  // it starts at "0" and adds up the other option 
     $('.activities').append('<div id="total"></div>');  //.activies is append to the div
 
-    var updateCost = function (cost) {
+    var updateCost = function (cost) {                  // a function store in a variable to add the cost of things.
         totalCost += cost;
        document.getElementById("total").innerHTML = "Total: $" + totalCost;
     };  
@@ -272,7 +273,7 @@ const validCardNumber = (cc) => {
     }
 }
 
-// Real-time validation of credit card listening for cc number input by user.  Will show error message if field is left empty or input wrong.
+// Real-time validation of credit card listening for cc 
 
 $('#cc-num').on('input', () => {                          
     if ($('#cc-num').val() !== '') {                       
@@ -284,7 +285,7 @@ $('#cc-num').on('input', () => {
     }
 });
 
-// Zip code validation function will test for proper zip code sequence.  If improper will produce an error message
+// Zip code validation function 
 
 const validZip = (zip) => {
     if ($('#payment').val() === 'credit card') {                
@@ -300,7 +301,7 @@ const validZip = (zip) => {
     }
 }
 
-// Real-time validation of zip code to listen for proper number input for zip code.  Error message produce if input invalid.
+// Real-time validation of zip code 
 
 $('#zip').on('input', () => {                           
     if ($('#zip').val() !== '') {                        
@@ -310,7 +311,7 @@ $('#zip').on('input', () => {
     }
 });
 
-// Cvv validation function test for a valid three digit input for cvv code.  Error message will be produced if invalid.
+// Cvv validation function test 
 
 const validCVV = (cvv) => {
     if ($('#payment').val() === 'credit card') {                   
@@ -326,7 +327,7 @@ const validCVV = (cvv) => {
     }
 }
 
-// Real-time validation of cvv - makes sure field is not empty and input properly.  Error produced if invalid.
+// Real-time validation of cvv - 
 
 $('#cvv').on('input', () => {                          
     if ($('#cvv').val() !== '') {                     
@@ -355,7 +356,7 @@ const isValid = () => {
             return false;                                                   
         }
 
-    // Credit Card is not chosen: 
+    // Credit Card is not selected 
         
     } else {
         if (validName($('#name').val()) && validEmail($('#mail').val()) && validActivities()) {
@@ -369,7 +370,7 @@ const isValid = () => {
     }
 }
 
-// Submit Button: This will prevents form being submitted if errors are present.
+// Submit Button,  This will prevents form to be submitted if they have errors.
 
 $('form').on('submit', (e) => {
     if (isValid() === true) {
@@ -381,7 +382,7 @@ $('form').on('submit', (e) => {
 });
 
 
-/////////////////// Payment Section ///////////////////
+/////////////////// Payment Section ///////////////////******** 
 
 
 $('#paypal, #bitcoin').hide();
@@ -391,21 +392,21 @@ $('#payment').val("credit card");
 
 $('#payment').change(function(){
     
-    if ($('#payment option:selected').val() === "paypal") {
+    if ($('#payment option:selected').val() === "paypal") {    // if paypal is selected then show and hide other
 		$('#credit-card, #bitcoin').hide();
 		$('#paypal').show();
     
     } else if ($('#payment option:selected').val() === "bitcoin") {
-		$('#credit-card, #paypal').hide();
+		$('#credit-card, #paypal').hide();                      // if bitcoin is selected than hide others
 		$('#bitcoin').show();
     
     } else {
 		$('#credit-card').show();
-		$('#paypal, #bitcoin').hide();
+		$('#paypal, #bitcoin').hide();                  // if credit  card is selected than hide other 
 	}
 });
 
-// Submit Button: This will prevents form being submitted if errors are present.
+ // Submit Button: This will prevents form being submitted if errors are present.
 
 $('form').on('submit', (e) => {
     if (isValid() === true) {
